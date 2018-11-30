@@ -6,10 +6,37 @@ provider:
   stage: dev
   region: ap-southeast-1
 
+custom:
+  webpackIncludeModules: true
+  webpack:
+    webpackConfig: ./webpack.config.js
+    packager: 'yarn' # Packager that will be used to package your external modules
+
 functions:
   hello:
     handler: src/Main.hello
+    events:
+      - http:
+          path: hello
+          method: get
   now:
     handler: src/OrderHistory.now
+    events:
+      - http:
+          path: now
+          method: get
   orderHistory:
     handler: src/OrderHistory.orderHistory
+    events:
+      - http:
+          path: orderHistory
+          method: get
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+  - serverless-dotenv-plugin
+
+# serverless optimization
+package:
+  individually: true
