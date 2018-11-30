@@ -2,11 +2,18 @@
 'use strict';
 
 
-function hello(_event, _context, callback) {
-  console.log(_event);
-  console.log(_event.asda);
+function hello($$event, _context, callback) {
+  var match = $$event.queryStringParameters;
+  var message;
+  if (match == null) {
+    message = "";
+  } else {
+    var match$1 = match.name;
+    message = (match$1 == null) ? "Hello from Reason!" : "Hello " + match$1;
+  }
   var body = {
-    message: "Hello from Reason!"
+    message: message,
+    event: $$event
   };
   var response = {
     statusCode: 200,

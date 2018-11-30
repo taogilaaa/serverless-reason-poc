@@ -10,3 +10,6 @@ jspm_packages
 .bsb.lock
 npm-debug.log
 /lib/bs/
+
+.webpack
+.env
