@@ -27,8 +27,6 @@ function dataMall(payload, param, callback) {
 }
 
 function now(_event, param, callback) {
-  console.log(_event);
-  console.log(_event.company_name);
   return KnexConnection$ServerlessReason.knex.raw("SELECT NOW();").then((function (rawResult) {
                     var match = rawResult.rows;
                     if (match !== undefined) {

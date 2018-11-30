@@ -27,9 +27,7 @@ let dataMall = (payload, _, callback) => {
   |> Js.Promise.then_(response => callback(Js.Nullable.null, response));
 };
 
-let now = (_event, _, callback) => {
-  Js.log(_event);
-  Js.log(_event##company_name);
+let now = (_event, _, callback) =>
   KnexConnection.knex
   |> raw("SELECT NOW();")
   |> Js.Promise.then_(rawResult =>
@@ -40,4 +38,3 @@ let now = (_event, _, callback) => {
      )
   |> Js.Promise.then_(results => results->makeResult->Js.Promise.resolve)
   |> Js.Promise.then_(response => callback(Js.Nullable.null, response));
-};
