@@ -2,9 +2,15 @@
   "name": "serverless-reason-poc",
   "version": "0.1.0",
   "scripts": {
-    "build": "bsb -make-world",
     "start": "bsb -make-world -w",
-    "clean": "bsb -clean-world"
+    "clean": "bsb -clean-world",
+    "deploy:env": "sls deploy --stage $NODE_ENV",
+    "deploy": "export NODE_ENV=dev && yarn deploy:env",
+    "deploy:production": "export NODE_ENV=production && yarn deploy:env",
+    "deploy:staging": "export NODE_ENV=staging && yarn deploy:env",
+    "serve": "serverless offline start",
+    "build": "bsb -make-world",
+    "build:webpack": "serverless webpack"
   },
   "keywords": [
     "BuckleScript"
@@ -12,7 +18,14 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "bs-platform": "^4.0.7"
+    "bs-platform": "^4.0.7",
+    "serverless": "^1.32.0",
+    "serverless-dotenv-plugin": "^2.0.1",
+    "serverless-offline": "^3.25.10",
+    "serverless-webpack": "^5.2.0",
+    "webpack": "^4.17.1",
+    "webpack-node-externals": "^1.7.2",
+    "babel-loader": "^8.0.0"
   },
   "dependencies": {
     "bs-knex": "^3.1.0",
